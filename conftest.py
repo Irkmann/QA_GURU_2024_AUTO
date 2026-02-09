@@ -1,8 +1,22 @@
-import pytest # этот файл, хранилище фикстур у которых скоуп == сессия
+import pytest
+from selene import browser
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
-@pytest.fixture(scope="session") # это декоратор, но используется именно в пайтесте
-def browser():
-    print("Браузер!")# Пишем фикстуру для открытия браузера
-    yield # вернуть результат, но в отличии от return мы времся сюда, все, что после йилда - это тирдаун, посткондишены
-    # тирдаун выполняется вне зависимости от результат выполнения теста, упал - все равно выполнится
-    print("Браузер закрывается")
+
+@pytest.fixture(scope="function")
+def setup_chrome():
+    # Настройка Chrome с размером 400x400
+    chrome_options = Options()
+    chrome_options.add_argument("--window-size=1000,1000")
+
+    driver = webdriver.Chrome(options=chrome_options)
+    browser.config.driver = driver
+    browser.config.timeout = 10
+
+    # Открываем Google
+    browser.open("https://ya.ru/")
+
+    yield browser
+
+    browser.quit()
