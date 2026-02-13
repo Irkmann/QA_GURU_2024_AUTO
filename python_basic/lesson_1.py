@@ -1,11 +1,12 @@
-from decimal import Decimal
 
-a = 0.5
-print(a)
+def unique_elements():
+    """
+    Удалите из списка все повторяющиеся элементы
+    """
+    l = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10, 10]
+    # TODO удалите повторяющиеся элементы
+    unique = list(dict.fromkeys(l))
+    print(unique)
 
-b = 0.1 + 0.2
-print(b)
-
-
-assert b == 0.3
+unique_elements()
 

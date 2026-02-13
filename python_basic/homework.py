@@ -68,10 +68,11 @@ def test_unique_elements():
     """
     l = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10, 10]
     # TODO удалите повторяющиеся элементы
+    unique = list(dict.fromkeys(l))
 
-    assert isinstance(l, list)
-    assert len(l) == 10
-    assert l == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    assert isinstance(unique, list)
+    assert len(unique) == 10
+    assert unique == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 def test_dicts():
